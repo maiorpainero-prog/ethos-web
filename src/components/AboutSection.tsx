@@ -1,9 +1,10 @@
 import React from 'react';
 
+// Placeholder SVG image - replace with actual photo later
+// TODO: Add actual image file to public/images/ folder
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"%3E%3Crect fill="%23e2e8f0" width="300" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="%2394a3b8"%3EФото%3C/text%3E%3C/svg%3E';
+
 export const AboutSection: React.FC = () => {
-  // Placeholder image - replace with actual image later
-  const userPhoto = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"%3E%3Crect fill="%23e2e8f0" width="300" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="%2394a3b8"%3EФото%3C/text%3E%3C/svg%3E';
-  
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       
@@ -24,7 +25,7 @@ export const AboutSection: React.FC = () => {
              {/* Avatar Area */}
             <div className="aspect-[3/4] rounded-[2rem] bg-slate-50 border-2 border-slate-100 overflow-hidden relative group">
                <img 
-                 src={userPhoto} 
+                 src={PLACEHOLDER_IMAGE} 
                  alt="Александр Гришин"
                  className="w-full h-full object-cover transition-all duration-500"
                />
