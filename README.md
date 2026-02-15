@@ -20,3 +20,19 @@ npm run dev
 - Framer Motion (motion)
 - Lucide React
 - Vite
+
+## 🚀 Деплой
+
+Сайт автоматически деплоится на GitHub Pages при каждом push в ветку `main`.
+
+**Live URL:** https://maiorpainero-prog.github.io/ethos-web/
+
+### Как работает деплой:
+1. При push в `main` запускается GitHub Actions workflow
+2. Проект собирается через `npm run build`
+3. Содержимое папки `dist` публикуется на GitHub Pages
+
+### Ручной запуск деплоя:
+1. Перейдите в [Actions](https://github.com/maiorpainero-prog/ethos-web/actions)
+2. Выберите workflow "Deploy to GitHub Pages"
+3. Нажмите "Run workflow"
