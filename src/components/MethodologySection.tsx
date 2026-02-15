@@ -2,8 +2,14 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, RefreshCw, Unlock, BrainCircuit } from 'lucide-react';
 
-const StepCard = ({ icon: Icon, number, title, text }: { icon: any, number: string, title: string, text: string }) => (
-  <div className="relative group">
+const StepCard = ({ icon: Icon, number, title, text, index }: { icon: any, number: string, title: string, text: string, index: number }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.5, delay: index * 0.15 }}
+    className="relative group"
+  >
     <div className="absolute top-8 left-8 w-px h-24 bg-slate-200 -z-10 last:hidden md:block hidden" />
     
     <div className="bg-white border border-slate-200 p-8 rounded-3xl transition-all duration-300 hover:shadow-xl hover:shadow-lime-500/10 hover:-translate-y-1 h-full">
@@ -17,7 +23,7 @@ const StepCard = ({ icon: Icon, number, title, text }: { icon: any, number: stri
       <h3 className="text-xl font-bold mb-3 text-slate-900">{title}</h3>
       <p className="text-slate-600 leading-relaxed text-sm">{text}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 export const MethodologySection: React.FC = () => {
@@ -105,18 +111,21 @@ export const MethodologySection: React.FC = () => {
               icon={ShieldCheck}
               title="Снятие тревоги"
               text="Учимся успокаивать 'систему безопасности', доказывая мозгу, что ситуация безопасна."
+              index={0}
             />
             <StepCard 
               number="02"
               icon={Unlock}
               title="Разрыв шаблона"
               text="Останавливаем автоматическую реакцию 'угодить' или 'сбежать' в момент её появления."
+              index={1}
             />
             <StepCard 
               number="03"
               icon={RefreshCw}
               title="Новый рефлекс"
               text="Закрепляем нейронную связь: «Я проявляю себя = Я в безопасности и получаю ресурсы»."
+              index={2}
             />
           </div>
 

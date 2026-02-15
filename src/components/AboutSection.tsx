@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 // TODO: Replace with actual photo path
 // import userPhoto from 'figma:asset/6f3ae8b915504a58c320800c7fbff125ddb3e7c9.png';
 const userPhoto = 'https://placehold.co/400x600/e2e8f0/64748b?text=AG';
@@ -11,16 +12,28 @@ export const AboutSection: React.FC = () => {
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-lime-100/30 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-5xl font-black text-black mb-6 uppercase tracking-tight">
             Кто ведет?
           </h2>
           <div className="w-20 h-2 bg-lime-500 mx-auto rounded-full" />
-        </div>
+        </motion.div>
 
         <div className="flex flex-col md:flex-row items-center gap-12">
           
-          <div className="w-full md:w-1/3">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full md:w-1/3"
+          >
              {/* Avatar Area */}
             <div className="aspect-[3/4] rounded-[2rem] bg-slate-50 border-2 border-slate-100 overflow-hidden relative group">
                <img 
@@ -29,9 +42,15 @@ export const AboutSection: React.FC = () => {
                  className="w-full h-full object-cover transition-all duration-500"
                />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="w-full md:w-2/3">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-full md:w-2/3"
+          >
             <h3 className="text-2xl font-bold text-black mb-2">Александр Гришин</h3>
             <p className="text-lime-600 font-bold uppercase tracking-wider text-sm mb-6">Консультант по социальным стратегиям</p>
             
@@ -57,7 +76,7 @@ export const AboutSection: React.FC = () => {
                 <div className="text-xs text-slate-400 font-bold uppercase">Кейсов</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

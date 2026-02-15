@@ -33,7 +33,13 @@ export const Section: React.FC<SectionProps> = ({
         <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 md:gap-24`}>
           
           {/* Animated Neural Graphic */}
-          <div className="w-full md:w-1/2 relative">
+          <motion.div 
+            initial={{ opacity: 0, x: reverse ? 30 : -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="w-full md:w-1/2 relative"
+          >
             <div className="relative aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden bg-slate-50 border border-slate-100 flex items-center justify-center group">
                
                {/* Animated Neural Connections */}
@@ -114,10 +120,16 @@ export const Section: React.FC<SectionProps> = ({
                </div>
 
             </div>
-          </div>
+          </motion.div>
 
           {/* Text Side */}
-          <div className="w-full md:w-1/2">
+          <motion.div 
+            initial={{ opacity: 0, x: reverse ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full md:w-1/2"
+          >
             <div className="inline-flex items-center gap-2 mb-6">
               <Activity className="w-5 h-5 text-lime-500" />
               <span className="text-sm font-bold uppercase tracking-widest text-slate-400">{subtitle}</span>
@@ -152,7 +164,7 @@ export const Section: React.FC<SectionProps> = ({
             <button className="flex items-center gap-3 text-black font-bold uppercase tracking-wider hover:gap-6 transition-all group">
               Подробнее <ArrowRight className="w-5 h-5 text-lime-500 group-hover:text-black transition-colors" />
             </button>
-          </div>
+          </motion.div>
 
         </div>
       </div>
