@@ -1,5 +1,7 @@
 import React from 'react';
-import userPhoto from 'figma:asset/6f3ae8b915504a58c320800c7fbff125ddb3e7c9.png';
+// TODO: Replace with actual photo path
+// import userPhoto from 'figma:asset/6f3ae8b915504a58c320800c7fbff125ddb3e7c9.png';
+const userPhoto = 'https://placehold.co/400x600/e2e8f0/64748b?text=AG';
 
 export const AboutSection: React.FC = () => {
   return (
