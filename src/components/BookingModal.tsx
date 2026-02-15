@@ -44,9 +44,6 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
       
       // Since we can't read the response with 'no-cors', we assume success
       setIsSubmitted(true);
-      
-      // Log for debugging (remove in production)
-      console.log('Form submitted:', formData);
     } catch (err) {
       console.error('Form submission error:', err);
       setError('Ошибка отправки. Попробуйте позже или свяжитесь напрямую.');

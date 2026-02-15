@@ -1,15 +1,20 @@
 /**
  * Contact information and social media links for ETHOS
+ * 
+ * ⚠️ IMPORTANT: Replace placeholder values before deploying to production!
  */
 export const CONTACTS = {
-  telegram: '@ethos_psychology',
-  whatsapp: '+79999999999',
+  telegram: '@ethos_psychology',  // Replace with actual Telegram handle
+  whatsapp: '+79999999999',       // ⚠️ REPLACE with actual WhatsApp number
   email: 'info@ethos.ru',
-  instagram: '@ethos_psychology'
+  instagram: '@ethos_psychology'  // Replace with actual Instagram handle
 };
 
 /**
  * Google Forms integration configuration
+ * 
+ * ⚠️ CRITICAL: This configuration MUST be updated before going live!
+ * The current values are placeholders and will NOT work.
  * 
  * How to get your Google Form IDs:
  * 1. Create a Google Form at https://forms.google.com/
@@ -29,10 +34,10 @@ export const CONTACTS = {
  * - If name field has name="entry.123456789", use that as the value
  */
 export const GOOGLE_FORM = {
-  // Replace with your actual Google Form submission URL
+  // ⚠️ REPLACE 'YOUR_FORM_ID' with your actual Google Form ID
   url: 'https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse',
   fields: {
-    // Replace with your actual entry IDs from your Google Form
+    // ⚠️ REPLACE these entry IDs with your actual form field IDs
     name: 'entry.123456789',    // Entry ID for the name field
     contact: 'entry.987654321'   // Entry ID for the contact field
   }
