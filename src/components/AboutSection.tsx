@@ -1,7 +1,9 @@
 import React from 'react';
-import userPhoto from 'figma:asset/6f3ae8b915504a58c320800c7fbff125ddb3e7c9.png';
 
 export const AboutSection: React.FC = () => {
+  // Placeholder image - replace with actual image later
+  const userPhoto = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"%3E%3Crect fill="%23e2e8f0" width="300" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="%2394a3b8"%3EФото%3C/text%3E%3C/svg%3E';
+  
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       
