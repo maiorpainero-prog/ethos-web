@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, ArrowRight, Check } from 'lucide-react';
+import { X, ArrowRight, Check, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { GOOGLE_FORM } from '../constants/contacts';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -9,19 +10,46 @@ interface BookingModalProps {
 
 export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     contact: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  /**
+   * Handles form submission to Google Forms
+   * Uses 'no-cors' mode as Google Forms doesn't allow CORS from external domains
+   * This means we can't read the response, but the form data is still submitted
+   */
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
-    setTimeout(() => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      // Create FormData object for Google Forms submission
+      const submitData = new FormData();
+      submitData.append(GOOGLE_FORM.fields.name, formData.name);
+      submitData.append(GOOGLE_FORM.fields.contact, formData.contact);
+      
+      // Submit to Google Forms
+      // Note: Using 'no-cors' mode because Google Forms doesn't allow CORS
+      // This means we can't read the response, but submission still works
+      await fetch(GOOGLE_FORM.url, {
+        method: 'POST',
+        body: submitData,
+        mode: 'no-cors'
+      });
+      
+      // Since we can't read the response with 'no-cors', we assume success
       setIsSubmitted(true);
-      // In a real app, this would send data to Supabase
-      console.log('Form submitted:', formData);
-    }, 800);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError('Ошибка отправки. Попробуйте позже или свяжитесь напрямую.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -71,7 +99,8 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       placeholder="Имя"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-slate-50 border-2 border-transparent focus:border-lime-500 rounded-xl px-5 py-4 font-bold outline-none transition-all placeholder:text-slate-300"
+                      disabled={isLoading}
+                      className="w-full bg-slate-50 border-2 border-transparent focus:border-lime-500 rounded-xl px-5 py-4 font-bold outline-none transition-all placeholder:text-slate-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -85,16 +114,33 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       placeholder="@username или телефон"
                       value={formData.contact}
                       onChange={e => setFormData({...formData, contact: e.target.value})}
-                      className="w-full bg-slate-50 border-2 border-transparent focus:border-lime-500 rounded-xl px-5 py-4 font-bold outline-none transition-all placeholder:text-slate-300"
+                      disabled={isLoading}
+                      className="w-full bg-slate-50 border-2 border-transparent focus:border-lime-500 rounded-xl px-5 py-4 font-bold outline-none transition-all placeholder:text-slate-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
+                  {error && (
+                    <div className="bg-red-50 border-2 border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm font-medium">
+                      {error}
+                    </div>
+                  )}
+
                   <button 
                     type="submit"
-                    className="w-full bg-lime-500 hover:bg-lime-400 text-black font-black text-lg py-5 rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
+                    disabled={isLoading}
+                    className="w-full bg-lime-500 hover:bg-lime-400 text-black font-black text-lg py-5 rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    ОТПРАВИТЬ ЗАЯВКУ
-                    <ArrowRight className="w-5 h-5" />
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        ОТПРАВКА...
+                      </>
+                    ) : (
+                      <>
+                        ОТПРАВИТЬ ЗАЯВКУ
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
                   </button>
                   
                   <p className="text-center text-xs text-slate-400 mt-4">
